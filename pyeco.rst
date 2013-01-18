@@ -160,9 +160,23 @@ From this point on, I will be using sudo in my examples; you should replace this
 Understanding the packages 理解包
 =================================
 
+The first thing you need to understand is that Python does not have any package management facilities by default. In fact, the very concept of packages in Python is very loose.
 
+你首先需要理解的是Python没有一个默认的包管理设施。事实上，包的概念在Python中是相当弱的。
 
+As you might already know, Python code is organized into modules. A module can be a single file containing just one function or a directory containing one or more sub-modules. The difference between a package and a module is very minimal and every module can be thought of as a package.
 
+可能你已经知道，Python代码被组织为模块。
+一个模块可能由包含一个函数的单一文件组成，也可能由包含多个模块的目录组成。
+包和模块的区别非常小，并且每个模块都能被理解为包。
+
+So what is the difference (if any) between a module and a package? For that you first need to understand how Python finds the modules.
+
+那么包和模块的区别到底是什么（如果有的话）？为了明白这个，你首先应该明白Python是如何查找模块的。
+
+As with any programming environment, some functions and classes (str, len, Exception, etc.) in Python are available in the global scope(called builtin scope in Python) and others need to be imported by means of an import statement. For example:
+
+如同别的编程环境一样，Python中的一些函数和类（例如str,len,Exception等）在全局（叫做内置函数）都是可用的。别的就需要通过手动 ``import`` 进来。例如：
 
 
 
