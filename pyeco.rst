@@ -179,8 +179,81 @@ As with any programming environment, some functions and classes (str, len, Excep
 如同别的编程环境一样，Python中的一些函数和类（例如str,len,Exception等）在全局（叫做内置函数）都是可用的。
 别的就需要通过手动 ``import`` 进来。例如::
 
->>> import os
->>> from os.path import basename, dirname
+    >>> import os
+    >>> from os.path import basename, dirname
+
+These packages must be somewhere in your filesystem so that they can be found by the import statement. How does Python know the location of these modules? These locations are set automatically when you install the Python virtual machine and are, almost always, dependent on the target platform.
+
+这个包一定存在你的机子上，这样才能被import语句导入。但Python是如何知道这些模块的位置呢？
+这些位置信息在你安装Python虚拟机时就被自动设置好了，并且依赖于你的目标平台。
+
+The package path is always available for your inspection in sys.path. Here is what it looks like on my laptop which runs Ubuntu 11.10 Oneric Ocelot.
+
+包的路径可以在sys.path中查询。下面是在我的笔记本上的结果，运行环境是Ubuntu 11.10。 ::
+
+    >>> import sys
+
+    >>> print sys.path
+
+    ['',
+
+     '/usr/lib/python2.7',
+
+     '/usr/lib/python2.7/plat-linux2',
+
+     '/usr/lib/python2.7/lib-tk',
+
+     '/usr/lib/python2.7/lib-old',
+
+     '/usr/lib/python2.7/lib-dynload',
+
+     '/usr/local/lib/python2.7/dist-packages',
+
+     '/usr/lib/python2.7/dist-packages',
+
+     '/usr/lib/python2.7/dist-packages/PIL',
+
+     '/usr/lib/python2.7/dist-packages/gst-0.10',
+
+     '/usr/lib/python2.7/dist-packages/gtk-2.0',
+
+     '/usr/lib/pymodules/python2.7',
+
+     '/usr/lib/python2.7/dist-packages/ubuntu-sso-client',
+
+     '/usr/lib/python2.7/dist-packages/ubuntuone-client',
+
+     '/usr/lib/python2.7/dist-packages/ubuntuone-control-panel',
+
+     '/usr/lib/python2.7/dist-packages/ubuntuone-couch',
+
+     '/usr/lib/python2.7/dist-packages/ubuntuone-installer',
+
+     '/usr/lib/python2.7/dist-packages/ubuntuone-storage-protocol']
+
+This will give you the list of directories where Python will search for a given package. It starts at the top and keeps going downwards until a name match is found. This means if two different directories contain two packages with the same name, the package search will always stop at the first absolute match encountered and will never go further down the list.
+
+这里给出了Python搜索包的路径。它将从最上面开始找，直到找到一个名字相符的。
+这表明如果两个不同的路径分别包含了两个具有相同名字的包，搜索将在找到第一个名字的时候停止，然后将永远不会往下查找。
+
+
+As you might have guessed by now, this package search path can easily be hacked to ensure that Python picks your packages first. All you need to do is:
+
+正如你所猜的，包搜索路径很容易被劫持，为了确保Python首先载入你的包，所需做的如下： ::
+
+>>> sys.path.insert(0, '/path/to/my/packages')
+
+While this approach comes in handy in many situations, you must always bear in mind that it is very easy to abuse it. Use it if you have to but don't abuse it.
+
+尽管这个方法在很多情况下都很好用，但一定要小心不要滥用。 **只有当必要时再使用！不要滥用！**
+
+
+The site module controls the method by which these package search paths are set. It is imported automatically at the time of initialization of Python virtual machine. If you would like to understand the process involved in more detail, head over to it's official documentation page.
+
+``site`` 模块控制包的搜索路径。当Python虚拟机初始化时它会子同被导入。如果你想了解更多信息，请看 `官方文档`_ 。
+
+.. _`官方文档`: http://docs.python.org/library/site.html
+
 
 
 
