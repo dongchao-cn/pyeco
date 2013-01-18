@@ -157,8 +157,8 @@ From this point on, I will be using sudo in my examples; you should replace this
 
 从这起，我将在例子中使用sudo，你需要根据你的系统进行更改。
 
-Understanding the packages
-==========================
+Understanding the packages 理解包
+=================================
 
 
 
