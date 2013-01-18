@@ -176,9 +176,11 @@ So what is the difference (if any) between a module and a package? For that you 
 
 As with any programming environment, some functions and classes (str, len, Exception, etc.) in Python are available in the global scope(called builtin scope in Python) and others need to be imported by means of an import statement. For example:
 
-如同别的编程环境一样，Python中的一些函数和类（例如str,len,Exception等）在全局（叫做内置函数）都是可用的。别的就需要通过手动 ``import`` 进来。例如：
+如同别的编程环境一样，Python中的一些函数和类（例如str,len,Exception等）在全局（叫做内置函数）都是可用的。
+别的就需要通过手动 ``import`` 进来。例如::
 
-
+>>> import os
+>>> from os.path import basename, dirname
 
 
 
