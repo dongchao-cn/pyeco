@@ -255,5 +255,49 @@ The site module controls the method by which these package search paths are set.
 .. _`官方文档`: http://docs.python.org/library/site.html
 
 
+The PYTHONPATH 变量PYTHONPATH
+=============================
+
+``PYTHONPATH`` is a environment variable that can be used to augment the default package search paths. Think of it as a ``PATH`` variable but specifically for Python. It is simply a list (not a Python list like ``sys.path`` ) of directories containing the Python modules separated by :. It can be simply set as follows:
+
+``PYTHONPATH`` 是一个用来增加默认包搜索目录的环境变量。可以认为它是对于Python的一个特殊的 ``PATH`` 变量。
+它仅仅是一个通过 ``:`` 分割，包含Python模块目录的列表（并不是类似于 ``sys.path`` 的Python list）。
+它可能就类似下面这样： ::
+
+    export PYTHONPATH=/path/to/some/directory:/path/to/another/directory:/path/to/yet/another/directory
+
+In some situations you will not want to overwrite the existing PYTHONPATH, but just append or prepend to it.
+
+有时候你可能并不想覆盖掉现存的 ``PYTHONPATH`` ，而仅仅是希望添加新目录到头部或尾部。 ::
+    
+    export PYTHONPATH=$PYTHONPATH:/path/to/some/directory    # Append
+    export PYTHONPATH=/path/to/some/directory:$PYTHONPATH    # Prepend
+
+Generally, you will put this inside the shell startup files like .bashrc, .zshrc, etc.
+
+一般来说，你需要把它放在shell启动文件类似 ``.bashrc`` , ``.zshrc`` 中。
+
+PYTHONPATH, sys.path.insert and similar techniques are hack and generally it is better to stay away for these hacks. Use them, if they solve your local development environment problems but your production environments should not depend on such hacks. There are more elegant ways of accomplishing the same effect, on which I will elaborate in a moment.
+
+
+``PYTHONPATH`` ， ``sys.path.insert`` 这些方法并非完美，我们最好也不要用这些方法。
+使用它们，你可能可以解决本地的开发环境问题，但它在别的环境下也许并不适用。
+有很多种方法可以达到这个效果，在下面我将一一阐述。
+
+Now that you understand how Python finds the installed packages, we can revisit our original question. What is the difference between a module and a package? A package is just a module or a collection of modules/sub-modules, and generally comes compressed inside a tarball, which contains 1) information on dependencies - if any 2) instructions to copy the files to the standard package search location and 3) compile instructions - if it contains code that must be compiled before installation. That's it.
+
+我们现在明白的Python如何找到安装的包路径，现在让我们回到开始那个问题。
+模块和包的区别到底是什么？包是一个模块或模块/子模块的集合，一般情况下被压缩到一个压缩包中。
+其中包含1)依赖信息 2)将文件拷贝到标准的包搜索路径的指令。3)编译指令(如果在安装前代码必须被编译的话)。
+就这些东西！
+
+
+
+
+
+
+
+
+
 
 
