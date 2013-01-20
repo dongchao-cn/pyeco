@@ -256,7 +256,7 @@ The site module controls the method by which these package search paths are set.
 
 
 The PYTHONPATH 变量PYTHONPATH
-=============================
+-----------------------------
 
 ``PYTHONPATH`` is a environment variable that can be used to augment the default package search paths. Think of it as a ``PATH`` variable but specifically for Python. It is simply a list (not a Python list like ``sys.path`` ) of directories containing the Python modules separated by :. It can be simply set as follows:
 
