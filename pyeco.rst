@@ -255,7 +255,7 @@ The site module controls the method by which these package search paths are set.
 .. _`官方文档`: http://docs.python.org/library/site.html
 
 
-The PYTHONPATH 变量PYTHONPATH
+The PYTHONPATH PYTHONPATH变量
 -----------------------------
 
 ``PYTHONPATH`` is a environment variable that can be used to augment the default package search paths. Think of it as a ``PATH`` variable but specifically for Python. It is simply a list (not a Python list like ``sys.path`` ) of directories containing the Python modules separated by :. It can be simply set as follows:
@@ -291,10 +291,110 @@ Now that you understand how Python finds the installed packages, we can revisit 
 其中包含1)依赖信息 2)将文件拷贝到标准的包搜索路径的指令。3)编译指令(如果在安装前代码必须被编译的话)。
 就这些东西！
 
+Third party packages 第三方库
+=============================
+
+Right from the start, for any serious programming with Python you will need to install third party packages for various tasks.
+
+从一开始，如果要做一些实际Python开发，你一定会用到一些第三方包。
+
+On a Linux System there are at least 3 ways of installing third party packages.
+
+1.using the package management system of your distro (deb, rpm, etc.)
+
+2.by means of various community-developed tools like pip, easy_install, etc.
+
+3.installing from the source files
+
+在Linux系统上至少有3种安装第三方包的方法。
+
+1. 使用系统自带的包管理系统(deb, rpm, 等)
+2. 通过社区开发的各种工具，例如 ``pip`` ， ``easy_install`` 等
+3. 从源文件安装
+
+All three ways, almost always, accomplish the same thing viz. install dependencies, compile code if needed and copy the modules contained inside a package to the standard package search locations.
+
+这三个方面，几乎完成同样的事情。即：安装依赖，编译代码（如果需要的话），将一个包含模块的包复制的标准软件包搜索位置。
 
 
+While #2 and #3 will work almost unchanged on any operating system, I will once again point you to Stack Overflow to find out other ways of installing third party packages on your target platform.
+
+第二步和第三步在所有的操作系统上基本相同。
+我再次希望您可以在 `Stack Overflow`_ 上找到你的平台的第三方包安装方法。
+
+.. _`Stack OverFlow`: http://www.stackoverflow.com/
 
 
+Where to find third party packages 在哪找第三方包？
+---------------------------------------------------
+
+Before you can install third party packages, you will have to find them. There are more than a few ways of finding packages.
+
+1.the modules packaged for your distro-specific package management system
+
+2.Python Package Index (or PyPI)
+
+3.Various source code hosting services like Launchpad, GitHub, BitBucket, etc.
+
+在安装第三方包之前，你首先要找到他们。以下是几种方法：
+
+1. 你的系统包管理器中的发行版专用包。
+2. `Python Package Index (or PyPI)`_
+3. 大量的源代码服务器，例如 `Launchpad`_, `GitHub`_, `BitBucket`_ 等 
+
+.. _`Python Package Index (or PyPI)`: http://pypi.python.org/pypi
+.. _`Launchpad`: https://launchpad.net/
+.. _`GitHub`: http://github.com/
+.. _`BitBucket`: https://bitbucket.org/
+
+
+Installing with distro-specific package management systems 通过发行版专用包安装
+-------------------------------------------------------------------------------
+
+Installing packages using the distro package management system is simply issuing the command or using whatever GUI app you use to install other apps. E.g., to install simplejson (a JSON parsing utility) on an Ubuntu system, you would issue the following command:
+
+通过包管理器安装包安装包就像使用命令行或者GUI安装别的软件那样简单。
+例如在Ubuntu中安装 ``simplejson`` ::
+    
+    $ sudo apt-get install python-simplejson
+
+Installing with pip 通过pip安装
+-------------------------------
+
+easy_install has mostly fallen out of favor. We will only concentrate on pip, which is a replacement for easy_install.
+
+easy_install渐渐不再流行。我们将主要介绍pip，它是easy_install的一个替代品。
+
+pip is a tool for installing and managing Python packages, such as those found in the Python Package Index. pip is not installed with the Python virtual machine, therefore we need to install it first. On Linux, I generally install it as follows:
+
+pip是一个用来安装和管理Python包的工具，就如同Python Packet Index一样。
+pip并没有随着Python一起安装，因此我们需要先安装它。Linux下，一般这样安装： 
+
+::
+
+    $ sudo apt-get install python-pip
+
+Before installing any other package I always upgrade pip to the latest version available in PyPI as Ubuntu repositories are generally behind PyPI. I upgrade pip with pip itself.
+
+在安装任何其他包之前，我总是通过PyPI将pip升级到最新版本的,
+Ubuntu软件库中的版本普遍落后的PyPI。我通过pip升级pip它自己。
+
+::
+
+    $ sudo pip install pip --upgrade
+
+Now, to install any python package, you would run the pip install package-name command. Therefore, to install ``simplejson`` you would run the following command:
+
+现在如果需要安装任何包，你可以运行pip命令。
+所以可以通过下面命令安装 ``simplejson``: ::
+
+$ sudo pip install simplejson
+
+Removing packages is just as easy.
+
+删除包也很简单。 ::
+
+    $ sudo pip uninstall simplejson
 
 
 
