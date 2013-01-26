@@ -252,7 +252,7 @@ Ubuntu软件库中的版本普遍落后的PyPI。我通过pip升级pip它自己�
 
     $ sudo pip install pip --upgrade
 
-现在如果需要安装任何包，你可以运行pip命令。
+现在如果需要安装任何包，你可以运行 ``pip install package-name`` 命令。
 所以可以通过下面命令安装 ``simplejson``: ::
 
     $ sudo pip install simplejson
@@ -261,7 +261,20 @@ Ubuntu软件库中的版本普遍落后的PyPI。我通过pip升级pip它自己�
 
     $ sudo pip uninstall simplejson
 
+一般情况下， ``pip`` 会从PyPI自动安装最新的稳定版，
+但有时我们需要安装一个特定版本的包，因为你的项目可能基于特殊的版本。
+因此你可能需要使用类似如下的 ``pip install`` 命令： 
 
+::
+
+    $ sudo pip install simplejson==2.2.1
+
+我们可能需要升级/降级/重新安装包。此时可以通过下面的命令完成：
+
+::
+
+    $ sudo pip install simplejson --upgrade         # Upgrade a package to the latest version from PyPI
+    $ sudo pip install simplejson==2.2.1 --upgrade  # Upgrade/downgrade a package to a given version
 
 
 
