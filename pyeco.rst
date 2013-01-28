@@ -2,7 +2,7 @@
 Python生态环境简介
 ==================
 
-每当开发人员从PHP，Ruby或者别的开发环境转换到Python时，所面对的最大问题是缺乏对Python开发的生态环境的充分理解。开发人员非常想得到一份关于完成大多数任务的指南或资源，而不论使用的方法是否规范。
+当开发人员从PHP，Ruby或者别的开发环境转换到Python时，所面对的最大问题是缺乏对Python开发的生态环境的充分理解。开发人员非常想得到一份关于完成大多数任务的指南或资源，而不论使用的方法是否规范。
 
 下文所讲到的基本上都来源于我的\ 网站_\ ，那存储着Python环境下对于网络应用开发的一些基本资料，这些资料是为那些从别的平台转到Python开发的实习生，研究生和有经验的开发者准备的。
 
@@ -275,6 +275,175 @@ Ubuntu软件库中的版本普遍落后的PyPI。我通过pip升级pip它自己�
 
     $ sudo pip install simplejson --upgrade         # Upgrade a package to the latest version from PyPI
     $ sudo pip install simplejson==2.2.1 --upgrade  # Upgrade/downgrade a package to a given version
+
+
+现在，如果你想安装一个处于开发版本的包，它在版本控制仓库有，但是PyPI中还没有怎么办？
+``pip`` 能够很好的处理这种情况，但在这之前，你需要自己安装这个版本控制仓库。Ubuntu下，你可以如下安装：
+
+::
+
+    $ sudo apt-get install git-core mercurial subversion
+
+安装版本控制仓库之后，从版本控制仓库安装包就如下所示：
+
+::
+
+    $ sudo pip install git+http://hostname_or_ip/path/to/git-repo#egg=packagename
+    $ sudo pip install hg+http://hostname_or_ip/path/to/hg-repo#egg=packagename
+    $ sudo pip install svn+http://hostname_or_ip/path/to/svn-repo#egg=packagename
+
+你也可以同样简单的从本地仓库安装，注意下面的三斜杠是文件目录。
+
+::
+
+    $ sudo pip install git+file:///path/to/local/repository
+
+有一点需要注意，如果使用 ``git`` 协议安装，你需要使用 ``git+git`` 前缀：
+
+::
+
+    $ sudo pip install git+git://hostname_or_ip/path/to/git-repo#egg=packagename
+
+现在你可能会好奇这些 *egg* 会被怎么使用。
+现在你需要明白的是一个egg是一个被压缩的Python包，里面包含了源代码和一些元数据。
+``pip`` 在安装包前建立了egg信息。你可以在代码仓库的 ``setup.py`` 文件中找到egg名字。
+找到 ``setup`` 块然后找到类似于 ``name="something"`` 的字段。
+它可能看起来就像如下的代码（这段代码从simplejson的 ``srtup.py`` 得到）一样。
+
+::
+
+    setup(
+
+    name="simplejson", # <--- This is your egg name
+
+    version=VERSION,
+
+    description=DESCRIPTION,
+
+    long_description=LONG_DESCRIPTION,
+
+    classifiers=CLASSIFIERS,
+
+    author="Bob Ippolito",
+
+    author_email="bob@redivi.com",
+
+    url="http://github.com/simplejson/simplejson",
+    
+    license="MIT License",
+
+    packages=['simplejson', 'simplejson.tests'],
+
+    platforms=['any'],
+
+    **kw)
+
+
+如果没有 ``setup.py`` 文件咋办？这样如何找到egg名？其实我们不需要。
+把包源码拷贝到你的工程目录下，然后导入进去就可以直接用了。
+
+--user 选项
+-----------
+
+上面的所有例子把包都安装到系统范围。如果你在 ``pip install`` 时使用 ``--user`` 选项，包将被安装到 ``~/.local`` 目录下。在我的机子上，如下所示：
+
+::
+
+    $ pip install --user markdown2
+
+    Downloading/unpacking markdown2
+
+      Downloading markdown2-1.0.1.19.zip (130Kb): 130Kb downloaded
+
+      Running setup.py egg_info for package markdown2
+
+
+
+    Installing collected packages: markdown2
+
+      Running setup.py install for markdown2
+
+        warning: build_py: byte-compiling is disabled, skipping.
+
+
+
+        changing mode of build/scripts-2.7/markdown2 from 664 to 775
+
+        warning: install_lib: byte-compiling is disabled, skipping.
+
+
+
+
+
+        changing mode of /home/mir/.local/bin/markdown2 to 775
+
+    Successfully installed markdown2
+
+    Cleaning up...
+
+注意： *markdown2* 被安装到 ``/home/mir/.local/bin/markdown2`` 这个目录下。
+
+有很多原因使你不想将包安装到系统目录中。
+稍后我将讲解如何对于每个项目设置独立的Python环境。
+
+从源码安装
+----------
+
+从源码安装包仅仅需要一个命令，解压这个包到一个目录，然后执行下面的命令。
+
+::
+
+    cd /path/to/package/directory
+
+    python setup.py install
+
+尽管这些安装的办法并没有什么不同，但 ``pip`` 方式是最好的。
+``pip`` 让你拥有轻松升级/降级包的能力，而手动安装你就不得不去手动下载，解压的安装。
+手动安装包应该使你最后一个选择，如果别的全部失败了（一般不太可能）。
+
+安装需要编译的包
+----------------
+
+我们现在已经了解了大多数包的安装方法，但有些包还没有介绍：包含C/C++代码的Python包，它们需要在安装前被编译。
+关于这些包最好的例子是数据库适配器，图片处理库等。
+
+虽然 ``pip`` 可以处理编译安装的源码，但我个人更喜欢使用发行版的包管理器提供的包。
+它将会安装编译好的二进制文件。
+
+如果你还是想用 ``pip`` 安装，下面是在Ubuntu系统上需要做的。
+
+编译器的相关工具：
+
+::
+
+    $ sudo apt-get install build-essential
+
+Python开发环境（头文件等）：
+
+::
+
+    $ sudo aptitude install python-dev-all
+
+如果你的系统没有 ``python-dev-all`` ，看看这些相似的名字 ``python-dev`` , ``python2.X-dev`` 等等。
+
+确保你已经安装了 ``psycopg2`` （PostgreSQL RDBMS adapter for Python），你将需要PostgreSQL的开发文件。
+
+::
+
+    $ sudo aptitude install  postgresql-server-dev-all
+
+完成这些依赖的安装后，你就能运行 ``pip install`` 了。
+
+::
+
+    $ sudo pip install psycopg2
+
+还需要注意一点： **并不是所有的包都能通过pip编译安装！** 。
+但如果你对编译安装很有自信，或者已经对于如何在自己的目标平台安装有足够的经验。
+那就大胆的手动安装吧！
+
+
+
 
 
 
