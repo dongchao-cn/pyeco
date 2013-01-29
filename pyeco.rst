@@ -677,6 +677,43 @@ virtualenvwrapper
     $ pip install -r requirements.txt
 
 
+其他重要工具
+============
+
+虽然我们讨论了基本的Python版本，虚拟机和包管理，但在日常工作中我们仍然还需要一些专用的工具来完成任务。
+尽管我不能把每一个工具的细节都讲到，然而我还是尽量给你提供基本的概述。
+
+编辑器
+------
+
+对于Python编程有大量很优秀的编译器。对于我个人而言，我更倾向于Vim，但这里我并不想挑起一场 *编辑器战争* 。
+
+有大量支持Python的编辑器，例如：Vim/Gvim, Emacs, GNOME上的GEdit,
+KDE上的Kate, Scribes, ActiveState的Komodo Edit/IDE, WingWare的Wing IDE,
+JetBrains上PyCharm, Eclipse的PyDEV插件。此外，还有其他，但这些似乎是最流行的。你可以任意选择最适合你的。
+
+
+Pyflakes：源码检测工具
+----------------------
+
+Pyflakes是一个检查Python源码并通过文本分析找出错误的工具。
+它可以检测出语法错误，和（部分）逻辑错误，导入但未使用的模块，只使用一次的变量，等等。
+
+你可以通过 ``pip`` 安装：
+
+::
+
+    $ pip install pyflakes
+
+在命令行调用它，参数填源文件名即可，如下所示：
+
+::
+
+    $ pyflakes filename.py
+
+Pyflakes也可已被集成进编辑器。这是它在我的vim中的样子。注意红波浪线：
+
+.. image:: images/vim-pyflakes.png
 
 
 
