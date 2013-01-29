@@ -635,6 +635,38 @@ virtualenvwrapper
 通过pip和virtualenv进行依赖管理
 -------------------------------
 
+``pip`` 结合 ``virtualenv`` 可以为你的项目提供基本的依赖管理。
+
+你可以通过 ``pip freeze`` 命令来查看当前已安装的包版本。下面列出的是我写着个博客所用到的包的版本：
+
+::
+
+    $ pip freeze -l 
+
+    Jinja2==2.6
+
+    PyYAML==3.10
+
+    Pygments==1.4
+
+    distribute==0.6.19
+
+    markdown2==1.0.1.19
+
+注意 ``-l`` 选项，它告诉 ``pip`` 只导出当前活动虚拟空间中安装的包，排除那些全局空间安装的包。
+
+你可以把结果保存到文件里，然后将它添加到你的版本控制系统里。
+
+::
+
+    $ pip freeze -l  > requirements.txt
+
+同时 ``pip`` 也能从一个包含 ``pip freeze`` 命令的文件中安装包。
+
+::
+
+    $ pip install -r requirements.txt
+
 
 
 
