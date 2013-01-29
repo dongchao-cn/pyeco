@@ -574,6 +574,67 @@ virtualenv拷贝了Python可执行文件的副本，并创建一些有用的脚�
 
     $ virtualenv my_project_venv --no-site-packages
 
+virtualenvwrapper
+-----------------
+
+``virtualenvwrapper`` 是一个建立在 ``virtualenv`` 上的工具，通过它可以方便的创建/激活/管理/销毁虚拟环境，没它的话进行上面的操作将会相当麻烦。
+可以通过下面命令安装 ``virtualenvwrapper`` 。
+
+::
+
+    $ sudo pip install virtualenvwrapper
+
+安装后，你需要配置它。下面是我的配置：
+
+::
+
+    if [ `id -u` != '0' ]; then
+
+      export VIRTUALENV_USE_DISTRIBUTE=1        # <-- Always use pip/distribute
+
+      export WORKON_HOME=$HOME/.virtualenvs       # <-- Where all virtualenvs will be stored
+
+      source /usr/local/bin/virtualenvwrapper.sh
+
+      export PIP_VIRTUALENV_BASE=$WORKON_HOME
+
+      export PIP_RESPECT_VIRTUALENV=true
+
+    fi
+
+设置 ``WORKON_HOME`` 和 ``source /usr/local/bin/virtualenvwrapper.sh`` 只需要几行代码，别的部分是按照我个人喜好添加的。
+
+将上面的配置添加到 ``~/.bashrc`` 的末尾，然后将下面的命令运行一次：
+
+::
+
+    $ source ~/.bashrc
+
+如果你关闭所有的shell窗口和标签，然后再打开一个新的shell窗口或标签时， ``~/.bashrc`` 也会被执行，此时将会自动的更新你的 ``virtualenvwrapper`` 配置。
+效果就跟执行上面的命令一样。
+
+新建/激活/关闭/删除虚拟空间需要执行下面的命令：
+
+::
+
+    $ mkvirtualenv my_project_venv
+
+    $ workon my_project_venv
+
+    $ deactivate
+
+    $ rmvirtualenv my_project_venv
+
+*Tab补全在virtualenvwrapper中是可用的哦～*
+
+前往 `virtualenvwrapper 主页`_ 查找更多关于它的信息。
+
+.. _`virtualenvwrapper 主页`: http://www.doughellmann.com/projects/virtualenvwrapper/
+
+
+通过pip和virtualenv进行依赖管理
+-------------------------------
+
 
 
 
