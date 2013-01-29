@@ -443,6 +443,137 @@ Python开发环境（头文件等）：
 那就大胆的手动安装吧！
 
 
+Python开发环境
+==============
+
+不同的人喜欢用不同的方式建立各自的开发环境，但在几乎所有的编程社区，总有一个（或一个以上）开发环境让人更容易接受。
+使用不同的开发环境虽然没有什么错误，但有些环境设置更容易进行便利的测试，并做一些重复/模板化的任务，使得在每天的日常工作简单并易于维护。
+
+virtualenv
+----------
+
+在Python的开发环境的最常用的方法是使用virtualenv包。
+Virtualenv是一个用来创建独立的Python环境的包。现在，出现了这样的问题：为什么我们需要一个独立的Python环境？
+要回答这个问题，请允许我引用virtualenv自己的文档：
+
+    我们需要处理的基本问题是包的依赖、版本和间接权限问题。想象一下，你有两个应用，一个应用需要libfoo的版本1，而另一应用需要版本2。如何才能同时使用这些应用程序？如果您安装到的/usr/lib/python2.7/site-packages（或任何平台的标准位置）的一切，在这种情况下，您可能会不小心升级不应该升级的应用程序。
+
+简单地说，你可以为每个项目建立不同的/独立的Python环境，你将为每个项目安装所有需要的软件包到它们各自独立的环境中。
+
+使用 ``pip`` 命令来安装virtualenv： 
+
+::
+
+    $ sudo pip install virtualenv
+
+virtualenv安装完毕后，可以通过运行下面的命令来为你的项目创建独立的python环境。
+
+::
+
+    $ mkdir my_project_venv
+
+    $ virtualenv --distribute my_project_venv
+
+    # The output will something like:
+
+    New python executable in my_project_venv/bin/python
+
+    Installing distribute.............................................done.
+
+    Installing pip.....................done.
+
+
+上面发生了什么？你创建了文件夹 ``my_project_venv`` 来存储你的新的独立Python环境。
+``--distribute`` 选项使virtualenv使用新的基于发行版的包管理系统而不是 ``setuptools`` 获得的包。
+你现在需要知道的就是 ``--distribute`` 选项会自动在新的虚拟环境中安装 ``pip`` ，这样就不需要手动安装了。
+当你成为一个更有经验的Python开发者，你就会明白其中细节。
+
+现在看看 ``my_project_venv`` 目录，你会看到这样的结构：
+
+::
+
+    # 这里只列出了将被讨论的目录和文件
+
+    .
+
+    |-- bin
+
+    |   |-- activate  # <-- 这个virtualenv的激活文件 
+
+    |   |-- pip       # <-- 这个virtualenv的独立pip
+
+    |   `-- python    # <-- python解释器的一个副本
+
+    `-- lib
+
+        `-- python2.7 # <-- 所有的新包会被存在这
+
+
+通过下面的命令激活这个virtualenv：
+
+::
+
+    $ cd my_project_venv
+
+    $ source bin/activate
+
+执行完毕后，提示可能是这个样子的：
+
+::
+
+    (my_project_venv)$ # the virtualenv name prepended to the prompt
+
+通过 deactivate 命令离开virtualenv环境
+
+::
+
+    (my_project_venv)$ deactivate
+
+运行下面的命令可以更好地理解两者的差异，如果已经进入virtualenv请先离开。
+
+首先让我们看看如果调用python/pip命令它会调用那一个。
+
+::
+
+    $ which python
+
+    /usr/bin/python
+
+    $ which pip
+
+    /usr/local/bin/pip
+
+再来一次！这次打开virtualenv，然后看看有什么不同。我的机子上显示如下：
+
+::
+
+    $ cd my_project_venv
+
+    $ source bin/activate
+
+    (my_project_venv)$ which python
+
+    /home/mir/my_project_venv/bin/python
+
+    (my_project_venv)$ which pip
+
+    /home/mir/my_project_venv/bin/pip
+
+virtualenv拷贝了Python可执行文件的副本，并创建一些有用的脚本和安装了项目需要的软件包，你可以在项目的整个生命周期中安装/升级/删除这些包。
+它也修改了一些搜索路径，例如PYTHONPATH，以确保：
+    
+    1) 当安装包时，它们被安装在当前活动的virtualenv里，而不是系统范围内的Python路径
+    2) 当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。
+
+
+还有一点比较重要，在默认情况下，所有安装在系统范围内的包对于virtualenv是可见的。
+这意味着如果你将simplejson安装在您的系统Python目录中，它会自动提供给所有的virtualenvs使用。
+这种行为可以被更改，在创建virtualenv时增加 ``--no-site-packages`` 选项的virtualenv就不会读取系统包，如下：
+
+::
+
+    $ virtualenv my_project_venv --no-site-packages
+
 
 
 
