@@ -2,6 +2,15 @@
 Python生态环境简介
 ==================
 
+:作者: `Mir Nazim`_
+:原文: `Python Ecosystem - An Introduction`_
+:译者: `dccrazyboy`_
+
+.. _`Mir Nazim`: http://mirnazim.org/about/
+.. _`Python Ecosystem - An Introduction`: http://mirnazim.org/writings/python-ecosystem-introduction/
+.. _`dccrazyboy`: dccrazyboy@gmail.com
+
+
 当开发人员从PHP，Ruby或者别的开发环境转换到Python时，所面对的最大问题是缺乏对Python开发的生态环境的充分理解。开发人员非常想得到一份关于完成大多数任务的指南或资源，而不论使用的方法是否规范。
 
 下文所讲到的基本上都来源于我的\ 网站_\ ，那存储着Python环境下对于网络应用开发的一些基本资料，这些资料是为那些从别的平台转到Python开发的实习生，研究生和有经验的开发者准备的。
