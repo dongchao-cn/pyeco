@@ -716,5 +716,182 @@ Pyflakes也可已被集成进编辑器。这是它在我的vim中的样子。注
 .. image:: images/vim-pyflakes.png
 
 
+请自行前往Stack Overflow找出如何将Pyflakes添加到编辑器。
+
+`Pyflakes官网`_
+
+.. _`Pyflakes官网`: https://launchpad.net/pyflakes
+
+
+Requests:一个HTTP库
+-------------------
+
+Requests是一个将处理HTTP请求变得轻而易举的库。
+
+同样是通过 ``pip`` 安装它：
+
+::
+
+    $ pip install requests
+
+下面是一个例子：
+
+::
+
+    >>> import requests
+
+    >>> r = requests.get('https://api.github.com', auth=('user', 'pass'))
+
+    >>> r.status_code
+
+    204
+
+    >>> r.headers['content-type']
+
+    'application/json'
+
+    >>> r.content
+
+    ...
+
+`Requests文档`_ 
+
+.. _`Requests文档`: http://docs.python-requests.org/en/latest/index.html
+
+
+Flask:一个web开发的微框架
+--------------------------
+
+Flask是一个基于Werkzeug和Jinja2的微框架。
+
+通过 ``pip`` 安装：
+
+::
+
+    $ pip install Flask
+
+这是一个简单的例子：
+
+::
+
+    from flask import Flask
+
+    app = Flask(__name__)
+
+
+
+    @app.route("/")
+
+    def hello():
+
+        return "Hello World!"
+
+
+
+    if __name__ == "__main__":
+
+        app.run()
+
+
+可以这样运行它：
+
+::
+
+    $ python hello.py
+
+     * Running on http://localhost:5000/
+
+`Flask官网`_
+
+.. _`Flask官网`: http://flask.pocoo.org/
+
+
+Django:一个全栈式web开发框架
+----------------------------
+
+Django是一个全栈式web开发框架。它提供了ORM，HTTP库，表单处理，XSS过滤，模板和别的特性。
+
+通过 ``pip`` 安装：
+
+::
+
+    $ pip install Django
+
+去 `Django官网`_ 查找更多信息。
+
+.. _`Django官网`: http://djangoproject.com/
+
+
+Fabric:简化SSH的使用并部署系统管理员任务
+----------------------------------------
+
+Fabric是一个命令行工具用来简化程序对于SSH的使用或运行系统管理员任务。
+它提供了一个基本套件可以执行本地或远程shell命令（正常或通过sudo），上传/下载文件，以及其他辅助功能，如提示用户输入，或中止执行的操作。
+
+可以通过 ``pip`` 安装：
+
+::
+
+    $ pip install fabric
+
+这是一个通过Fabric写的任务：
+
+::
+
+    from fabric.api import run
+
+
+
+    def host_type():
+
+        run('uname -s')
+
+你可以在一台或多台服务器上执行这个命令：
+
+::
+
+    $ fab -H localhost host_type
+
+    [localhost] run: uname -s
+
+    [localhost] out: Linux
+
+
+
+    Done.
+
+    Disconnecting from localhost... done.
+
+`Fabric官网`_
+
+.. _`Fabric官网`: http://fabfile.org/
+
+
+SciPy:一个科学计算库
+--------------------
+
+如果你的工作涉及科学和数值计算，SciPy的是您不可或缺的重要工具。
+
+SciPy官网这样介绍：
+    
+    SciPy的（读做“Sigh Pie”）是数学、科学和工程方面的开源库。
+    这也是Python在数值计算方面非常优秀的一个库。 
+    SciPy的库依赖于NumPy，它提供了方便快速的N维矩阵操作。 
+    SciPy库与NumPy中的矩阵兼容，并提供了许多用户友好且高效率的数值程序，如数值的积分和优化。
+    同时，他们运行在所有流行的操作系统上，安装快速，并且都是免费的。NumPy和SciPy易于使用，但功能强大，足以满足一些世界领先的科学家和工程师。
+    如果您需要在电脑上处理数字、显示或公布结果，试试SciPy吧！
+
+`SciPy`_
+
+.. _`SciPy`: http://www.scipy.org/
+
+
+PEP 8:Python风格指南
+--------------------
+
+虽然它本身不是一个软件工具，但它却是Python一个重要的资源。
+
+
+
 
 
