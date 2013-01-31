@@ -891,7 +891,90 @@ PEP 8:Python风格指南
 
 虽然它本身不是一个软件工具，但它却是Python一个重要的资源。
 
+PEP 8是一个描述Python发行版中基本库的编码约定的文档。
+这份文档的希望能够约定全世界Python开发者的代码布局，变量、类、函数的命名规则。
+请确保你了解它，并遵循它。他将在未来的Python使用中带来相当多的益处。
+
+`PEP 0008`_
+
+.. _`PEP 0008`: http://www.python.org/dev/peps/pep-0008/
+
+
+强大的Python标准库
+------------------
+
+Python的标准库涵盖非常广泛，提供各种各样的功能。
+该库包含的内置模块（使用C编写的）提供了访问系统的功能，如文件I/O，
+并且存在大量Python编写的模块，他们提供标准化的解决方案去解决日常的编程中出现的许多问题。
+这些模块都明确地抽离平台的细节，提供平台无关的API，旨在加强Python程序的跨平台可移植性。
+
+
+推荐阅读
+========
+
+David Goodger的 `Code Like a Pythonista: Idiomatic Python`_ 包含了很多实用的Python例子和技术。
+
+.. _`Code Like a Pythonista: Idiomatic Python` : http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html
+
+Doug Hellmann的 `Python Module of the Week` 系列的重点是建设一个使用Python标准库中的模块的示例代码的仓库。
+
+
+赠言
+====
+
+这个教程到目前为止，所讲述的仅是点到为止。Python世界中有大量的工具，库和软件可以帮你完成你的工作。
+但你需要自己花时间去发现他们！
+
+Python有一个伟大的社区和一群很聪明的维护者，他们对于新手非常有耐心。
+因此，关注你最喜欢的开源项目，加入他们的邮件列表，跟有经验的开发者交流经验。
+不久的将来，你的经验也将足够丰富，你将会成为他们其中的一员。
+
+
+最后我想引用下 **Zen Of Python** 。我们思考，学习，受到启发！
+*Happy Pythoning*
+
+::
+
+    >>> import this
+
+    The Zen of Python, by Tim Peters
 
 
 
+    Beautiful is better than ugly.
 
+    Explicit is better than implicit.
+
+    Simple is better than complex.
+
+    Complex is better than complicated.
+
+    Flat is better than nested.
+
+    Sparse is better than dense.
+
+    Readability counts.
+
+    Special cases aren't special enough to break the rules.
+
+    Although practicality beats purity.
+
+    Errors should never pass silently.
+
+    Unless explicitly silenced.
+
+    In the face of ambiguity, refuse the temptation to guess.
+
+    There should be one-- and preferably only one --obvious way to do it.
+
+    Although that way may not be obvious at first unless you're Dutch.
+
+    Now is better than never.
+
+    Although never is often better than *right* now.
+
+    If the implementation is hard to explain, it's a bad idea.
+
+    If the implementation is easy to explain, it may be a good idea.
+
+    Namespaces are one honking great idea -- let's do more of those!
