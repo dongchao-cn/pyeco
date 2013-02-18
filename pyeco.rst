@@ -74,7 +74,7 @@ VM挑选
 
 Python解释器或Python虚拟机有很多种实现，CPython是最主流的实现。CPython同时也是别的虚拟机实现的参考解释器。
 
-PyPy是用Python实现的Python解释器，Jython是用Jave实现运行在JVM上的解释器，IronPython是用Microsoft .NET CLR实现的解释器。
+PyPy是用Python实现的Python解释器，Jython是用Java实现运行在JVM上的解释器，IronPython是用Microsoft .NET CLR实现的解释器。
 
 除非解释器的选择非常非常重要，我们一般都用CPython。
 
