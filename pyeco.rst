@@ -55,7 +55,7 @@ Python 2.x是一个稳定的版本，Python 3是个新的版本。如果你不�
 
 当开始学习Python时，安个3.x的版本看上去应该是第一步，但它可能并不一定是你想要的。
 
-现在Python有两个正在开发的版本-2.7.x和3.x(也被成为Python3,Py3k或Python 3000)。
+现在Python有两个正在开发的版本-2.7.x和3.x(也被称为Python3,Py3k或Python 3000)。
 跟Python2相比Python3就是另外一个语言。它们之间存在者或大或小的语法差异。
 现今Python2.6/2.7是被安装和应用的最为广泛的版本。
 许多的主流代码和一些重要的packages/frameworks/tools/utilities/modules并不支持Python3。
