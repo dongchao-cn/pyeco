@@ -45,7 +45,7 @@ Python开发生态环境简介
 
 .. _`Official documentation for Python on Mac OS X`: http://docs.python.org/using/mac.html
 
-去搜索下最适合你平台的Python安装方法。我强烈建立问Stack Overflow。
+去搜索下最适合你平台的Python安装方法。我强烈建议问Stack Overflow。
 
 
 版本之惑
@@ -172,7 +172,7 @@ Fedora/Red Hat及类似系统::
 
 尽管这个方法在很多情况下都很好用，但一定要小心不要滥用。 **只有当必要时再使用！不要滥用！**
 
-``site`` 模块控制包的搜索路径。当Python虚拟机初始化时它会子同被导入。如果你想了解更多信息，请看 `官方文档`_ 。
+``site`` 模块控制包的搜索路径。当Python虚拟机初始化时它会自动被导入。如果你想了解更多信息，请看 `官方文档`_ 。
 
 .. _`官方文档`: http://docs.python.org/library/site.html
 
