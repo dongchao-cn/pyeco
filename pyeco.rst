@@ -45,7 +45,7 @@ Python开发生态环境简介
 
 .. _`Official documentation for Python on Mac OS X`: http://docs.python.org/using/mac.html
 
-去搜索下最适合你平台的Python安装方法。我强烈建立问Stack Overflow。
+去搜索下最适合你平台的Python安装方法。我强烈建议问Stack Overflow。
 
 
 版本之惑
